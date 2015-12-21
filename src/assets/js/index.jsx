@@ -27,7 +27,7 @@ let Speedometer = React.createClass({
 
 let App = React.createClass({
   getFix: function () {
-    fetch('http://ice.portal/jetty/api/v1/status')
+    fetch('/jetty/api/v1/status')
       .then(res => res.json())
       .then(({ speed, latitude, longitude }) => {
         let fixes = [ { speed, position: [ latitude, longitude ], time: Date.now() }, ...this.state.fixes ].slice(0, 1000);
