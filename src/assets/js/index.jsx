@@ -2,12 +2,27 @@
 
 import React from 'react';
 import { render } from 'react-dom';
+import { Sparklines, SparklinesLine } from 'react-sparklines';
 import { Map, TileLayer, Polyline } from 'react-leaflet';
 
 import geoDistance from './lib/geo-distance';
 
 // Polyfills
 import 'whatwg-fetch';
+
+let Speedometer = React.createClass({
+  render: function () {
+    // A bit inaccurate since our samples won't be *quite* evenly spaced
+    // along the x axis, but meh.
+    let data = [ this.props.speed, ...this.props.fixes.slice(0, 30).map(f => f.speed) ].reverse();
+    return <div className="speedometer">
+      <Sparklines data={data} width={150} height={25} min={0}>
+        <SparklinesLine color="blue" />
+      </Sparklines>
+      <span className="speed">{ this.props.speed.toFixed(0) } <small>km/h</small></span>
+    </div>;
+  },
+});
 
 let App = React.createClass({
   getFix: function () {
@@ -57,7 +72,7 @@ let App = React.createClass({
     let trail = [ this.state.position, ...this.state.fixes.map(f => f.position) ];
     let train = lineWithLength(trail, 100);
     return <div>
-      <div className="speed">{ this.state.speed.toFixed(0).replace('.', ',') } <small>km/h</small></div>
+      <Speedometer speed={this.state.speed} fixes={this.state.fixes} />
       <Map center={ this.state.position } zoom={this.state.zoom || 12} className="map" onZoomend={ev => this.setState({ zoom: ev.target._animateToZoom })}>
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
