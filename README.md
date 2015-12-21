@@ -8,10 +8,13 @@ and while that's neat, it wasn't good enough for me, so I hacked together
 an improved version. It's a bit smoother, shows the current speed and
 displays more than just the most recent data point.
 
+![A short clip of the improved map](https://raw.githubusercontent.com/pbock/bahnmap/master/src/bahnmap.gif)
 
 ## Installing
 
 ```sh
+git clone git@github.com:pbock/bahnmap.git
+cd bahnmap
 npm install
 make
 ```
