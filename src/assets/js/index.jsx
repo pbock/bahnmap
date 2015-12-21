@@ -51,7 +51,7 @@ let App = React.createClass({
           fixes[0].position[0] + dLat * amount,
           fixes[0].position[1] + dLon * amount,
         ],
-        speed: fixes[0].speed + dV * amount,
+        speed: Math.max(0, fixes[0].speed + dV * amount),
       });
     }
     requestAnimationFrame(this.getPosition);
