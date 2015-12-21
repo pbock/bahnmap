@@ -1,9 +1,10 @@
 'use strict';
 
+import L from 'leaflet';
 import React from 'react';
 import { render } from 'react-dom';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
-import { Map, TileLayer, Polyline } from 'react-leaflet';
+import { Map, TileLayer, LayersControl, Polyline } from 'react-leaflet';
 
 import geoDistance from './lib/geo-distance';
 
@@ -17,7 +18,7 @@ let Speedometer = React.createClass({
     let data = [ this.props.speed, ...this.props.fixes.slice(0, 30).map(f => f.speed) ].reverse();
     return <div className="speedometer">
       <Sparklines data={data} width={150} height={25} min={0}>
-        <SparklinesLine color="blue" />
+        <SparklinesLine color="#f00" />
       </Sparklines>
       <span className="speed">{ this.props.speed.toFixed(0) } <small>km/h</small></span>
     </div>;
@@ -71,16 +72,18 @@ let App = React.createClass({
     }
     let trail = [ this.state.position, ...this.state.fixes.map(f => f.position) ];
     let train = lineWithLength(trail, 100);
+
     return <div>
       <Speedometer speed={this.state.speed} fixes={this.state.fixes} />
       <Map center={ this.state.position } zoom={this.state.zoom || 12} className="map" onZoomend={ev => this.setState({ zoom: ev.target._animateToZoom })}>
         <TileLayer
-          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png"
+          attribution={'&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
         />
         <Polyline
           positions={ trail }
-          weight={3}
+          weight={4}
+          opacity={0.9}
           color="#f00"
         />
         <Polyline
