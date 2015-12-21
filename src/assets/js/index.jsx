@@ -58,6 +58,8 @@ let App = React.createClass({
   },
   getInitialState: function () {
     let fixes = localStorage.fixes ? JSON.parse(localStorage.fixes) : [];
+    // Delete fixes if none have occurred for 20 minutes
+    if (fixes[0] && fixes[0].time < Date.now() - 1000 * 60 * 20) fixes = [];
     return { position: null, speed: null, fixes, };
   },
   componentDidMount: function () {
