@@ -26,7 +26,7 @@ make
 npm run serve
 ```
 
-This will start a server on http://localhost:9090 that proxies requests
+This will start a server on http://localhost:9000 that proxies requests
 to the onboard server.
 
 
