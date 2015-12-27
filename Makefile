@@ -8,9 +8,7 @@ BIN = node_modules/.bin
 
 dist: dist/index.html \
 	dist/assets/js/index.js \
-	dist/assets/css/leaflet.css \
-	dist/assets/css/skeleton.css \
-	dist/assets/css/normalize.css
+	dist/assets/css/leaflet.css
 
 dist/%.html: src/%.html
 	mkdir -p $(@D)
