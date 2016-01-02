@@ -73,7 +73,7 @@ let App = React.createClass({
       return <p>Suche Position …</p>;
     }
     let trail = [ this.state.position, ...this.state.fixes.map(f => f.position) ];
-    let train = lineWithLength(trail, 100);
+    let train = lineWithLength(trail, 400);
 
     return <div>
       <Speedometer speed={this.state.speed} fixes={this.state.fixes} />
@@ -89,13 +89,13 @@ let App = React.createClass({
           color="#f00"
         />
         <Polyline
-          positions={ lineWithLength(trail, 150) }
+          positions={train}
           weight={11}
           color="#000"
           opacity={0.3}
         />
         <Polyline
-          positions={ lineWithLength(trail, 150) }
+          positions={train}
           weight={7}
           color="#fff"
           opacity={1}
