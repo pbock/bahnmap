@@ -7,9 +7,9 @@ var app = express();
 app.use(express.static('dist/'));
 app.get('/jetty/api/v1/status', function (req, res) {
   request({
-    url: 'http://ice.portal/jetty/api/v1/status',
+    url: 'http://ice.portal/api1/rs/status',
     headers: {
-      'User-Agent': 'ice-map 0.1.0',
+      'User-Agent': 'ice-map 0.1.1',
     }
   }).pipe(res);
 });
