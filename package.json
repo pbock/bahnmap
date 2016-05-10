@@ -1,6 +1,6 @@
 {
   "name": "bahnmap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A better version of the onboard map on ICE trains",
   "main": "index.js",
   "scripts": {
