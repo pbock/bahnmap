@@ -79,8 +79,8 @@ let App = React.createClass({
       <Speedometer speed={this.state.speed} fixes={this.state.fixes} />
       <Map center={ this.state.position } zoom={this.state.zoom || 12} className="map" onZoomend={ev => this.setState({ zoom: ev.target._animateToZoom })}>
         <TileLayer
-          url="http://ice.portal/maps/{z}/{x}/{y}.png"
-          attribution={'&copy; <a href="http://www.opencyclemap.org">OpenCycleMap</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
+          url="https://portal.imice.de/maps/{z}/{x}/{y}.png"
+          attribution={'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap Contributors</a>'}
         />
         <Polyline
           positions={ trail }
