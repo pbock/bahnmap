@@ -9,7 +9,7 @@ app.get('/jetty/api/v1/status', function (req, res) {
   request({
     url: 'https://portal.imice.de/api1/rs/status',
     headers: {
-      'User-Agent': 'ice-map 0.1.0',
+      'User-Agent': 'ice-map 0.1.2',
     }
   }).on('error', err => {
     if (err.code === 'ENOTFOUND') {
